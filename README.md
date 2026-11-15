@@ -71,6 +71,3 @@ The plugin uses Java and standard RuneLite APIs. It performs no network requests
 ## Licence
 
 [BSD 2-Clause](LICENSE), copyright William Chamberlain. The Gradle wrapper retains its original Apache 2.0 notices and bundled licence.
-# ToA-Gear-Inspector
-# ToA-Gear-Inspector
-# ToA-Gear-Inspector
