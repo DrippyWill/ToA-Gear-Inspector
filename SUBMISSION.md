@@ -1,10 +1,10 @@
-# Publish ToA Applicant Gear
+# Publish ToA Gear Inspector
 
 This project is prepared against the [Plugin Hub guide](https://github.com/runelite/plugin-hub#creating-new-plugins). The source package is ready to upload; the repository URL and final GitHub commit hash can only be filled in after that upload.
 
 ## 1. Create the public repository
 
-On GitHub, create a **public** repository named `toa-applicant-gear` with description:
+On GitHub, create a **public** repository named `toa-gear-inspector` with description:
 
 > Inspect nearby players' equipment from the Tombs of Amascut party interface.
 
@@ -31,7 +31,7 @@ If using Git locally, run these commands inside the extracted source folder, the
 ```bash
 git init -b main
 git add .
-git commit -m "Initial release of ToA Applicant Gear"
+git commit -m "Initial release of ToA Gear Inspector"
 ```
 
 GitHub's file-upload page may not retain the executable bit on gradlew. The included workflow uses `bash ./gradlew`, and Linux users can use the same command or run `chmod +x gradlew` locally.
@@ -40,16 +40,22 @@ GitHub's file-upload page may not retain the executable bit on gradlew. The incl
 
 Open the repository's Actions tab and confirm **Build and test** succeeds. It runs a Java 11 build with the latest released RuneLite dependency.
 
-The metadata is complete: display name ToA Applicant Gear; author William Chamberlain; plugin class com.toa.gear.ToaApplicantGearPlugin; version 1.2.0; build=standard. The package and launcher already use these real class names, not template Example classes. The 48×48 icon and BSD 2-Clause licence are included.
+The metadata is complete: display name ToA Gear Inspector; author William Chamberlain; plugin class com.toa.gearinspector.ToaGearInspectorPlugin; version 1.2.1; build=standard. The package and launcher already use these real class names, not template Example classes. The 48×48 icon and BSD 2-Clause licence are included.
 
 ## 4. Submit the marker to Plugin Hub
 
-Fork [runelite/plugin-hub](https://github.com/runelite/plugin-hub), create a branch, and add **one extensionless file** named `plugins/toa-applicant-gear`.
+Fork [runelite/plugin-hub](https://github.com/runelite/plugin-hub), create a branch, and add **one extensionless file** named `plugins/toa-gear-inspector`.
+
+The marker filename must match `^[a-z0-9-]+$`: lowercase letters, digits and dashes only, with no extension. The display name **ToA Gear Inspector** keeps its capitals and spaces. Your GitHub repository can also keep a name such as **ToA-Gear-Inspector**; use its actual URL in the marker. The lowercase rule applies to the marker filename in the plugin-hub repository.
+
+If your current pull request contains `plugins/ToA-Gear-Inspector`, rename that file to `plugins/toa-gear-inspector` in the same pull request. Remove the old uppercase path so that only the lowercase file remains.
+
+After replacing the source with this renamed version, commit it to your plugin repository and update the marker to that new commit. Do not keep the hash of the previous source revision.
 
 Its complete contents must be these two fields, using your actual repository URL and the final full 40-character commit hash:
 
 ```properties
-repository=https://github.com/YOUR_GITHUB_USERNAME/toa-applicant-gear.git
+repository=https://github.com/YOUR_GITHUB_USERNAME/toa-gear-inspector.git
 commit=YOUR_FULL_40_CHARACTER_COMMIT_HASH
 ```
 
@@ -61,7 +67,7 @@ Commit the marker in your plugin-hub fork, then open a pull request against rune
 
 Suggested pull request title:
 
-> Add ToA Applicant Gear
+> Add ToA Gear Inspector
 
 Suggested description:
 
@@ -87,7 +93,7 @@ The Hub reviews code and gameplay behaviour. This package has been prepared and 
 | --- | --- |
 | Appropriate public repository | Name/description above; you create it in your GitHub account |
 | Java 11 development project | Gradle wrapper, Java 11 bytecode and developer run task |
-| Rename example package/classes/launcher | com.toa.gear and ToaApplicantGearLauncher already configured |
+| Rename example package/classes/launcher | com.toa.gearinspector and ToaGearInspectorLauncher already configured |
 | PluginDescriptor and plugin metadata | Completed and consistent |
 | Optional icon | Original 48×48 PNG at repository root |
 | Useful README | Usage, limitations, configuration and build instructions |
@@ -95,3 +101,11 @@ The Hub reviews code and gameplay behaviour. This package has been prepared and 
 | Commit and push source | Upload/commit steps above; final SHA is created by that commit |
 | Two-line Hub marker | Exact format and filename above |
 | Build mode | standard; no extra runtime dependencies required |
+
+## Interpreting the reported build error
+
+`invalid plugin file name "ToA-Gear-Inspector"` is the fatal error. The marker's path must be `plugins/toa-gear-inspector`.
+
+`Unable to download previous manifest, doing full build` reports the packager falling back to a full build. In the supplied log, processing continued until the invalid filename check failed; the filename error is the action required for that run. This does not claim that all later build/review steps have already passed.
+
+When updating an existing GitHub repository, replace the previous `src` directory rather than merging the new package into it: the Java package and class names have changed. The repository must not retain the old plugin classes alongside the new ones.

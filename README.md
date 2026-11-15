@@ -1,6 +1,6 @@
-# ToA Applicant Gear
+# ToA Gear Inspector
 
-![ToA Applicant Gear icon](icon.png)
+![ToA Gear Inspector icon](icon.png)
 
 Inspect nearby players' worn equipment directly from the **Tombs of Amascut party interface**.
 
@@ -18,7 +18,7 @@ Open **Members** or **Applicants**, then hover a player's name or the magnifying
 
 ## Using the plugin
 
-Enable **ToA Applicant Gear**, open a party at the ToA obelisk, and select Members or Applicants. Hover a name or magnifier; move onto the card to inspect individual slots and their full labels. Move away to close it.
+Enable **ToA Gear Inspector**, open a party at the ToA obelisk, and select Members or Applicants. Hover a name or magnifier; move onto the card to inspect individual slots and their full labels. Move away to close it.
 
 **Hover player names** is enabled by default. Turn it off to open cards only from the magnifier column.
 
@@ -26,7 +26,7 @@ Equipment is read from a nearby player's public appearance, not from a remote eq
 
 ## Installation status
 
-This source is prepared for Plugin Hub submission. It has not yet been submitted or approved. Once accepted, install it through RuneLite's Plugin Hub. A local source checkout can be run with the development launcher below.
+This source is prepared for Plugin Hub submission and review. It has not yet been approved. Once accepted, install it through RuneLite's Plugin Hub. A local source checkout can be run with the development launcher below.
 
 ## Build and development
 
@@ -71,3 +71,9 @@ The plugin uses Java and standard RuneLite APIs. It performs no network requests
 ## Licence
 
 [BSD 2-Clause](LICENSE), copyright William Chamberlain. The Gradle wrapper retains its original Apache 2.0 notices and bundled licence.
+
+## Naming
+
+The RuneLite display name is **ToA Gear Inspector**. The Gradle project and Plugin Hub marker use **toa-gear-inspector**. The main class is `com.toa.gearinspector.ToaGearInspectorPlugin`; the configuration namespace is `toaGearInspector`.
+
+The namespace changed with this rename, so this version uses the default plugin settings on first launch. When replacing an older source checkout, replace its source directory rather than leaving both package trees in the repository.

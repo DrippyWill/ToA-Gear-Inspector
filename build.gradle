@@ -2,8 +2,8 @@ plugins {
     id 'java'
 }
 
-group = 'com.toa.gear'
-version = '1.2.0'
+group = 'com.toa.gearinspector'
+version = '1.2.1'
 
 repositories {
     maven {
@@ -14,7 +14,7 @@ repositories {
 }
 
 def runeLiteVersion = providers.gradleProperty('runeliteVersion').getOrElse('latest.release')
-def pluginMainClass = 'com.toa.gear.ToaApplicantGearLauncher'
+def pluginMainClass = 'com.toa.gearinspector.ToaGearInspectorLauncher'
 
 dependencies {
     compileOnly "net.runelite:client:${runeLiteVersion}"
