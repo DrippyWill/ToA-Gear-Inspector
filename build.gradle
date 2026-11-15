@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.toa.gear'
+version = '1.2.0'
+
+repositories {
+    maven {
+        url = 'https://repo.runelite.net'
+        content { includeGroupByRegex('net\\.runelite.*') }
+    }
+    mavenCentral()
+}
+
+def runeLiteVersion = providers.gradleProperty('runeliteVersion').getOrElse('latest.release')
+def pluginMainClass = 'com.toa.gear.ToaApplicantGearLauncher'
+
+dependencies {
+    compileOnly "net.runelite:client:${runeLiteVersion}"
+    testImplementation "net.runelite:client:${runeLiteVersion}"
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-core:4.11.0'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release.set(11)
+}
+
+tasks.named('test') {
+    jvmArgs '-Djava.awt.headless=true'
+    testLogging { events 'failed', 'skipped' }
+}
+
+tasks.register('run', JavaExec) {
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = pluginMainClass
+    jvmArgs '-ea'
+    args '--developer-mode'
+}
+
+tasks.named('jar') {
+    from('runelite-plugin.properties')
+    from('LICENSE') { into 'META-INF' }
+}
+
+tasks.register('sourcesJar', Jar) {
+    archiveClassifier = 'sources'
+    from sourceSets.main.allSource
+}
